@@ -1,4 +1,4 @@
-export default function BookCard({id, title, author, year, available, onShowDetails}) {
+export default function BookCard({id, title, author, year, available, onToggle, }) {
     return(
         <article className={`book-card ${available ? "is-complete" : ""}`}>
             <div>
@@ -8,7 +8,7 @@ export default function BookCard({id, title, author, year, available, onShowDeta
                 <p>Disponibilidade: {available ? "Disponível" : "Indisponível"}</p>
             </div> 
 
-            <button onClick={() => onShowDetails(id)} className="button">
+            <button onClick={() => onToggle(id)} className="button">
                 {available ? "Reservar" : "Ver Detalhes"}
             </button>
         </article>

@@ -1,6 +1,6 @@
 import BookCard from "./BookCard";
 
-export default function Booklist({books, onShowDetails}) {
+export default function Booklist({books, onToggle,}) {
     if (books.length === 0 ) {
         return <p>Nenhum livro no sistema</p>
     }
@@ -11,7 +11,7 @@ export default function Booklist({books, onShowDetails}) {
                 <BookCard
                 key={book.id}
                 {...book}
-                onShowDetails={onShowDetails}
+                onToggle={onToggle}
                 />
 
             ))}
