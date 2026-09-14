@@ -2,16 +2,25 @@ import "./App.css";
 import Booklist from "./components/BookList.jsx";
 import panel from "./components/panel.jsx";
 import { books } from "./data/books.js";
+import { useState } from "react";
+import BookCard from "./components/BookCard.jsx";
+import BookForm from "./components/BookForm.jsx";
 
 export default function App() {
+  const [books, setCompletedBooks] = useState([]);
+
   const completedCount = books.filter(
     (book) => book.available,).length;
 
-  function handleShowDetails(id) {
-    const book = books.find((book) => book.id === id);
-    if (book) {
-      window.alert(`${book.title} - Meta: ${book.author} - Ano: ${book.year} - Disponibilidade: ${book.available}`);
-    }
+  function handleToggleBook(bookId) {
+    setCompletedBooks((currentBooks) => 
+      currentBooks.map((book) => {
+        if (book.id === bookId) {
+          return { ...book, available: !book.available };
+        }
+        return book;
+      })
+    );
   }
 
   return (
