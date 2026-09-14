@@ -1,11 +1,18 @@
 import "./App.css";
 import Booklist from "./components/BookList.jsx";
+import panel from "./components/panel.jsx";
 import { books } from "./data/books.js";
 
 export default function App() {
   const completedCount = books.filter(
     (book) => book.available,).length;
 
+  function handleShowDetails(id) {
+    const book = books.find((book) => book.id === id);
+    if (book) {
+      window.alert(`${book.title} - Meta: ${book.author} - Ano: ${book.year} - Disponibilidade: ${book.available}`);
+    }
+  }
 
   return (
     <main className="app">
@@ -17,7 +24,9 @@ export default function App() {
           {completedCount} de {books.length} Livros Disponiveis
         </p>
 
-        <Booklist books={books} />
+        <panel title="Livros Disponíveis">
+          <Booklist books={books} onShowDetails={handleShowDetails} />
+        </panel>
       </header>
     </main>
   );

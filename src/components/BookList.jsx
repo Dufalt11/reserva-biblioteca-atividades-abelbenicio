@@ -1,6 +1,6 @@
 import BookCard from "./BookCard";
 
-export default function Booklist({books}) {
+export default function Booklist({books, onShowDetails}) {
     if (books.length === 0 ) {
         return <p>Nenhum livro no sistema</p>
     }
@@ -10,10 +10,8 @@ export default function Booklist({books}) {
             {books.map((book) => (
                 <BookCard
                 key={book.id}
-                title={book.title}
-                author = {book.author}
-                year = {book.year}
-                available = {book.available}
+                {...book}
+                onShowDetails={onShowDetails}
                 />
 
             ))}
